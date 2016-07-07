@@ -1,0 +1,157 @@
+------- Please choose position -------,------- Posición -------
+-------- Please select a slider --------,-------- Slider --------
+--------- Please choose style -------,--------- Estílo -------
+A total of %1 record(s) have been changed status.,Se actualizaron %1 estatus.
+A total of %1 record(s) have been deleted.,Se eliminaron %1 registros.
+Add New Banner,Agregar Banner
+Add New Slider,Agregar Slider
+Alt Text,Texto Alternativo
+Animation Effect,Efecto animado
+Are you sure?,Estás seguro?
+Banner ID,Banner ID
+Banner ID,Banner ID
+Banner Image,Imagen
+Banner Information,Información del banner
+Banner Status,Estatus del banner
+Banners,Banners
+Bar,Bar
+Blue,Blue
+Bottom-Left,Inferior-Izquierdo
+Bottom-Middle,Inferior-Centro
+Bottom-Right,Inferior-Derecho
+Cart-Content-Top,Cart-Content-Top
+Catalog and product,Catalogo y producto
+Catalog-Content-Top,Catalogo-Contenido-Arriba
+Catalog-Menu-Bottom,Catalogo-Menu-Abajo
+Catalog-Menu-Top,Catalogo-Menu-Arriba
+Catalog-Page-Bottom,Catalogo-Pagina-Inferior
+Catalog-Sidebar-Bottom-Left,Catalogo-Lateral-Inferior-Izquierda
+Catalog-Sidebar-Bottom-Right,Catalogo-Lateral-Inferior-Derecho
+Catalog-Sidebar-Top-Left,Catalogo-Lateral-Superior-Izquierda
+Catalog-Sidebar-Top-Right,Catalog-Lateral-Superior-Derecha
+Category-Content-Top,Categoria-Contenido-Superior
+Category-Menu-Bottom,Categoria-Menu-Inferior
+Category-Menu-Top,Categoria-Menu-Superior
+Category-Page-Bottom,Categoria-Pagina-Inferior
+Category-Sidebar-Bottom-Left,Categoria-Lateral-Inferior-Izquierdo
+Category-Sidebar-Bottom-Right,Categoria-Lateral-Inferior-Derecha
+Category-Sidebar-Top-Left,Categoria-Lateral-Superior-Izquierdo
+Category-Sidebar-Top-Right,Categoria-Lateral-Superior-Derecho
+Change status,Cambiar estatus
+Checkout-Content-Top,Checkout-Contentenido-Superior
+Color,Color
+Content-Top,Contenido-Superior
+Create Banner,Crear Banner
+CSV,CSV
+Custom,Personalizado
+Custom slider,Slider personalizado
+Customer-Content-Top,Cliente-Contenido-Superior
+Customer-Siderbar-Main-Bottom,Cliente-Lateral-Principal-Inferior
+Customer-Siderbar-Main-Top,Cliente-Lateral-Principal-Superior
+Default for using in CMS page template,Default para uso en CMS
+Delete,Borrar
+Delete,Borrar
+Delete successfully !,Borrado !
+Disabled,Deshabilitado
+Edit,Editar
+Edit Banner '%1',Editar Banner '%1'
+Enabled,Habilitado
+Ending time,Hasta
+Excel,Excel
+Fade,Desvanecer
+Fade,Desvanecer
+FlexSlider 1,FlexSlider 1
+FlexSlider 2,FlexSlider 2
+FlexSlider 3,FlexSlider 3
+FlexSlider 4,FlexSlider 4
+General (will be disaplyed on all pages),General (se despliega en todas las páginas)
+Gray,Gris
+Green,Verde
+Height,Altura
+Homepage-Content-Top,Home-Contenido-Superior
+ID,ID
+Image,Imagen
+Left-Middle,Izquierdo-Centrado
+List Slider,Lista de Sliders
+Manage Banners,Administrar Banners
+Manage Sliders,Administrar Sliders
+Menu-Bottom,Menu-Inferior
+Menu-Top,Menu-Superior
+Name,Nombre
+No,No
+Note displayed on all pages,Nota desplegada en todas las imagenes
+Note\'s content,Contenido de la nota
+Orange,Naranja
+Order,Orden
+Orderly,Ordenado
+Page-Bottom,Página-Inferior
+Please select banner(s).,Seleccionar banner(s).
+Please select banner(s).,Seleccionar banner(s).
+Please select slider(s).,Seleccionar slider(s).
+Pop up on Home page,Pop up en inicio
+Popular positions,Posiciones
+Position,Posición
+Preview,Previo
+Preview Slider Styles,Previo de estilos
+Product-Content-Top,Producto-Contenido-Superior
+Product-Menu-Bottom,Producto-Contenido-Inferior
+Product-Menu-Top,Producto-Menu-Superior
+Product-Sidebar-Bottom-Left,Producto-Lateral-Inferior-Izquierdo
+Product-Sidebar-Bottom-Right,Producto-Lateral-Inferior-Derecho
+Product-Sidebar-Top-Left,Producto-Lateral-Superior-Izquierdo
+Product-Sidebar-Top-Right,Producto-Lateral-Superior-Derecho
+Rain,Rain
+Random,Aleatorio
+Red,Rojo
+Reports,Reportes
+Responsive Slider,Responsivo
+Right-Middle,Derecho-Centrado
+Save and Continue Edit,Guardar y continuar editando
+Save Banner,Guardar Banner
+Save Slider,Guardar Slider
+Select available Slider Styles,Selecciona Estilo de  Slider
+Select Slider Mode,Selecciona el Modo del Slider
+Sidebar-Bottom-Left,Lateral-Inferior-Izquierdo
+Sidebar-Bottom-Right,Lateral-Inferior-Derecho
+Sidebar-Top-Left,Lateral-Superior-Izquierdo
+Sidebar-Top-Right,Lateral-Superior-Derecho
+Slide,Slide
+Slider,Slider
+Slider Evolution Caborno,Slider Evolution Caborno
+Slider Evolution Default,Slider Evolution Default
+Slider Evolution Fresh,Slider Evolution Fresh
+Slider Evolution Minimalist,Slider Evolution Minimalist
+Slider ID,Slider ID
+Slider Information,Información del Slider
+Slider Status,Estatus del Slider
+Slider\'s Mode,Modo del Slider
+Something went wrong while saving the banner.,Algo falló al guardar el banner.
+Something went wrong while saving the slider.,Algo falló al guardar el slider.
+Sort type,Modo de Orden
+Special Slider,Slider especial
+Speed,Velocidad
+Square,Cuadrado
+Starting time,Desde
+Status,Estatus
+Target,Target
+The banner has been saved.,Se guardó el banner.
+The slider has been saved.,Se guardó el slider.
+This banner no longer exists.,El banner no existe.
+This slider no longer exists.,El slider no existe.
+Title,Titulo
+Top-Left,Superior-Izquierdo
+Top-Middle,Superior-Centrado
+Top-Right,Superior-Derecho
+URL,URL
+Use Default Value,Usar default
+Width,Ancho
+XML,XML
+Yellow,Amarillo
+Yes,Si
+"You have to save banner and close this window!","Guarda el banner y cierra esta ventana!"
+"Add code below to a template file.","Anexa este código al archivo del template."
+"You can put a slider on a cms page. Below is an example which we put a slider with slider_id is your_slider_id on a cms page.","Puedes anexar un slider a una página CMS."
+"Please copy and paste the code below on one of xml layout files where you want to show the banner Please replace the your_slider_id variable with your own slider Id.","Copia este código en el XML del layout reemplazando el ID del slider quie quieres mostrar."
+Self Window,Misma ventana
+Parent Window,Ventana padre
+New Window,Nueva ventana

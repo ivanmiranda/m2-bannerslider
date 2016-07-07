@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Pengo
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Pengo.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.pengostores.com/
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Pengo
+ * @package     Pengo_Bannerslider
+ * @author      @deivanmiranda
+ * @license     http://www.pengostores.com/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Pengo_Bannerslider::bannerslider" title="Banner Slider" module="Pengo_Bannerslider" sortOrder="10" resource="Pengo_Bannerslider::bannerslider" parent="Magento_Backend::content"/>
+
+        <!-- Pengo_Bannerslider::bannerslider_bannerslider -->
+
+		<add id="Pengo_Bannerslider::bannerslider_sliders" title="Manage Sliders" module="Pengo_Bannerslider" sortOrder="10" parent="Pengo_Bannerslider::bannerslider" action="bannerslideradmin/slider" resource="Pengo_Bannerslider::bannerslider_sliders"/>
+
+        <add id="Pengo_Bannerslider::bannerslider_banners" title="Manage Banners" module="Pengo_Bannerslider" sortOrder="10" parent="Pengo_Bannerslider::bannerslider" action="bannerslideradmin/banner" resource="Pengo_Bannerslider::bannerslider_banners"/>
+    </menu>
+</config>

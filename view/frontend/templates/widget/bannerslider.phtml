@@ -1,0 +1,27 @@
+<?php
+/**
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.pengostores.com/
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Pengo
+ * @package     Pengo_Bannerslider
+ * @copyright   Copyright (c) 2012-2016 Magestore (http://www.pengo.com/)
+ * @license     http://www.pengostores.com/
+ */
+?>
+<div class="pengo-bannerslider widget-bannerslider">
+    <?php
+    $sliderId = $block->getData('slider');
+    echo $this->getLayout()->createBlock("Pengo\Bannerslider\Block\SliderItem")->setSliderId($sliderId)->toHtml();
+    ?>
+</div>

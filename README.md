@@ -1,4 +1,4 @@
-# pengo/bannerslider
+# bannerslider
 
 Get customers' attention with eye-catching images
 

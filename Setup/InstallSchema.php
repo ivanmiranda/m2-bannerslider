@@ -278,7 +278,7 @@ class InstallSchema implements InstallSchemaInterface
         )->addColumn(
             'text',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            1500,
+            NULL,
             ['nullable' => true],
             'Banner text'
         )->addColumn(

@@ -50,8 +50,6 @@ You have to add this repository to the list defined in composer.js Magento :
     }
 ],
 ```
-
-
 and require it
 
 ```
@@ -69,6 +67,12 @@ composer [install][update]
 ```
 > 
 NOTE : The container must have installed git and have linked certificates with a registered account
+
+
+# To Do
+
+- [ ] Include a vertical slider
+- [ ] Allow simple products
 
 --
 

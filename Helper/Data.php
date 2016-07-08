@@ -164,13 +164,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 'label' => __('--------- Please choose style -------'),
                 'value' => '',
             ],
-            [
-                'label' => __('Special Slider'),
-                'value' => [
-                    ['value' => Slider::STYLESLIDE_POPUP, 'label' => __('Pop up on Home page')],
-                    // ['value' => Slider::STYLESLIDE_SPECIAL_NOTE, 'label' => __('Note displayed on all pages')],
-                ],
-            ],
+            // [
+            //     'label' => __('Special Slider'),
+            //     'value' => [
+            //         ['value' => Slider::STYLESLIDE_POPUP, 'label' => __('Pop up on Home page')],
+            //         // ['value' => Slider::STYLESLIDE_SPECIAL_NOTE, 'label' => __('Note displayed on all pages')],
+            //     ],
+            // ],
             // [
             //     'label' => __('Unresponsive Slider'),
             //     'value' => [

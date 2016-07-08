@@ -1,8 +1,42 @@
 # pengo/bannerslider
 
-## Instalación
+Get customers' attention with eye-catching images
 
-Hay que agregar este repositorio a la lista definida en el composer.js de Magento:
+# Use
+
+## Sliders
+
+Each slider has a selector switch , which is currently limited to ' CUSTOM ' that allows you to create widgets to be included on the site.
+
+
+It has 4 -defined styles that determine the behavior of the slider
+
+### FlexSlider 1
+![Slider Style 1](https://s32.postimg.org/k9ee2uk9d/estilo1.png)
+
+### FlexSlider 2
+![Slider Style 2](https://s32.postimg.org/3mwttrrbl/estilo2.png)
+
+### FlexSlider 3
+![Slider Style 3](https://s32.postimg.org/jvd23905t/estilo3.png)
+
+### FlexSlider 4
+![Slider Style 4](https://s32.postimg.org/cdz9aal8x/estilo4.png)
+
+## Banners
+
+The images that integrates an slider have effective dates so they can be displayed and / or scheduled for future viewing, helping the store manager.
+
+Each of them can be linked to a URL that can be displayed in the indicated target.
+
+This behavior is overridden by defining HTML content you want to display and / or configurable product that can be purchased directly from each banner.
+
+When generating the front-end, each banner has a distinct class with the same name that was given to create the banner , allowing apply custom designs for each item from the main fears of the store.
+
+## Install
+
+You have to add this repository to the list defined in composer.js Magento :
+
 ```
 "repositories": [
     {
@@ -17,7 +51,8 @@ Hay que agregar este repositorio a la lista definida en el composer.js de Magent
 ],
 ```
 
-y requerir el mismo
+
+and require it
 
 ```
 "require": {
@@ -27,41 +62,15 @@ y requerir el mismo
 },
 ```
 
-Dependiendo si es una instalacion nueva o previa, ejecutar:
+Depending on whether it is a new or previous installation, run:
+
 ```
 composer [install][update]
 ```
-> NOTA: El contenedor debe tener instalado git y haber vinculado los certificados con una cuenta registrada
+> 
+NOTE : The container must have installed git and have linked certificates with a registered account
 
-# Uso
-
-## Sliders
-
-Cada slider cuenta con un selector de posiciones, que actualmente se encuentra limitado a 'CUSTOM' que permite crear widgets para poder ser incluidos en el sitio.
-
-Se cuenta con 4 estilos definidos que determinan el comportamiento del slider
-
-### FlexSlider 1
-![Slider Estilo 1](https://s32.postimg.org/k9ee2uk9d/estilo1.png)
-
-### FlexSlider 2
-![Slider Estilo 2](https://s32.postimg.org/3mwttrrbl/estilo2.png)
-
-### FlexSlider 3
-![Slider Estilo 3](https://s32.postimg.org/jvd23905t/estilo3.png)
-
-### FlexSlider 4
-![Slider Estilo 4](https://s32.postimg.org/cdz9aal8x/estilo4.png)
-
-## Banners
-
-Las imagenes que componen el slider cuentan con fechas de vigencia para que puedan ser mostradas y/o programadas para visualización futura, ayudando así al administrador de la tienda.
-
-Cada una de ellas se puede vincular a una URL que se puede mostrar en el target indicado.
-
-Este comportamiento se sobreescribe al definir contenido HTML que se deseé desplegar y/o el producto configurable que se puede comprar directamente desde cada banner.
-
-Al generar el front-end, cada banner tiene una clase distintiva con el mismo nombre que se dió al crear el banner, permitiendo así aplicar diseños personalizados para cada elemento desde el teme principal de la tienda.
+--
 
 **Happy coding!**
 - [ivan miranda](http://ivanmiranda.me)

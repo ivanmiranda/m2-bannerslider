@@ -58,11 +58,16 @@
 	padding: 0.5em;
 }
 
+.pengo-bannerslider-standard .Imagen_3 { padding-top: 5em; }
+.pengo-bannerslider-standard .Imagen_3 .product .data .name { color: #22a32f; }
+.pengo-bannerslider-standard .Imagen_3 .product .data .price { color: #FFF; }
+.pengo-bannerslider-standard .Imagen_3 .actions button { background: #22a32f; }
+
 .pengo-bannerslider-standard .extra-content .product { display: table; }
 
 .pengo-bannerslider-standard .extra-content .product .data { display: block; float: left; width: 100%; }
 
-.pengo-bannerslider-standard .extra-content .product .data .name { font-size: 1.5em; font-weight: 600; text-transform: uppercase; text-decoration: underline;     float: inherit; }
+.pengo-bannerslider-standard .extra-content .product .data .name { font-size: 1.5em; font-weight: 600; text-transform: uppercase; text-decoration: underline; float: inherit; }
 
 .pengo-bannerslider-standard .extra-content .product .data .price { float: right; display: block; font-weight: bolder; font-style: italic; }
 

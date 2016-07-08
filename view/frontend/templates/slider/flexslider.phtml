@@ -140,6 +140,7 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
                     <?php if ($styleSlide == \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_TWO) : ?>
                     <li data-thumb="<?php echo $block->getBannerImageUrl($banner) ?>">
                     <!-- START Extra content -->
+                        <?php if( trim( $banner->getText() ) != '' OR trim( $banner->getSku() ) != '' ): ?>
                         <div class="extra-content">
 
                         <!-- Text data -->
@@ -190,6 +191,7 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
                             <?php endif; ?>
 
                         </div>
+                        <?php endif; ?>
                     <!-- END Extra content-->
                         <a href="<?php echo $banner->getClickUrl() ?>" target="<?php echo $banner->getTargetValue() ?>" style="display:block;" data-mage-init='{"pengo/clickbanner": {"url": "<?php echo $this->getUrl("bannerslider/index/click") ?>", "slider_id": "<?php echo $banner->getSliderId() ?>", "banner_id": "<?php echo $banner->getId() ?>" }}' >
                         <img alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>"/>

@@ -18,7 +18,7 @@ class SliderViewTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testExtendsOriginal() {
-		$this->assertInstanceOf( '\Magento\Framework\View\Element\Template', $this->slider );
+		$this->assertInstanceOf( '\Magento\Framework\View\Element\Module', $this->slider );
 		$this->assertInstanceOf( '\Magento\Framework\View\Element\Template', $this->items );
 	}
 

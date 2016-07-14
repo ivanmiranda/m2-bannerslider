@@ -205,4 +205,8 @@ class Bannerslider extends \Magento\Framework\View\Element\Template
 
         return $this;
     }
+
+    public function getProductCollection() {
+        return [];
+    }
 }

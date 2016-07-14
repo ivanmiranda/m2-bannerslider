@@ -88,6 +88,24 @@ class InstallSchema implements InstallSchemaInterface
             ['nullable' => false, 'default' => '1'],
             'Slider status'
         )->addColumn(
+            'slider_attachment_mode',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['nullable' => false, 'default' => '0'],
+            'Slider attachment mode'
+        )->addColumn(
+            'slider_category',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false, 'default' => '0'],
+            'Slider category'
+        )->addColumn(
+            'max_products',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false, 'default' => '4'],
+            'Maximum products allowed'
+        )->addColumn(
             'sort_type',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
             10,

@@ -134,6 +134,17 @@ class SliderItem extends \Magento\Framework\View\Element\Template
     protected $configurableAttributeData;
 
     /**
+     * @var \Magento\Catalog\Model\CategoryFactory $categoryFactory,
+     */
+    protected $categoryFactory;
+
+    protected $bestSellers;
+
+    protected $mostViewed;
+
+    protected $imageHelper;
+
+    /**
      * [__construct description].
      *
      * @param \Magento\Framework\View\Element\Template\Context                $context
@@ -157,6 +168,10 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         \Magento\Catalog\Model\ProductFactory $productFactory,
         \Magento\ConfigurableProduct\Api\Data\OptionValueInterfaceFactory $optionValueFactory,
         \Magento\ConfigurableProduct\Model\Product\Type\Configurable $configurableInstance,
+        \Magento\Catalog\Model\CategoryFactory $categoryFactory,
+        \Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory $bestSellers,
+        \Magento\Reports\Model\ResourceModel\Product\CollectionFactory $mostViewed,
+        \Magento\Catalog\Helper\Image $image,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -171,6 +186,10 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         $this->productFactory = $productFactory;
         $this->optionValueFactory = $optionValueFactory;
         $this->configurableInstance = $configurableInstance;
+        $this->categoryFactory = $categoryFactory;
+        $this->bestSellers = $bestSellers;
+        $this->mostViewed = $mostViewed;
+        $this->imageHelper = $image;
     }
 
     /**
@@ -254,7 +273,7 @@ class SliderItem extends \Magento\Framework\View\Element\Template
 
     public function isShowTitle()
     {
-        return $this->_slider->getShowTitle() == SliderModel::SHOW_TITLE_YES ? TRUE : FALSE;
+        return $this->_slider->getShowTitle() == SliderModel::SHOW_TITLE_YES ? true : false;
     }
 
     /**
@@ -281,6 +300,42 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         }
 
         return $bannerCollection;
+    }
+
+    /**
+     * get products collection based on slider definition
+     * @return \Magento\Catalog\Model\ProductFactory
+     */
+    public function getProductCollection()
+    {
+        switch ($this->_slider->getSliderAttachmentMode()) {
+            // Category Mode
+            case \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_CATEGORY:
+                $category = $this->categoryFactory->create()->load($this->_slider->getSliderCategory());
+                if ($this->_slider->getMaxProducts() > 0) {
+                    $_products = $category->getProductCollection()->addAttributeToSelect('*')->setPageSize($this->_slider->getMaxProducts());
+                } else {
+                    $_products = $category->getProductCollection()->addAttributeToSelect('*');
+                }
+                break;
+            case \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_BESTSELLER:
+                $_products = $this->bestSellers->create()->setModel('Magento\Catalog\Model\Product');
+                break;
+            case \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_MOSTVIEWED:
+                $_products = $this->mostViewed->create()->addAttributeToSelect('*')->addViewsCount()->setStoreId($this->_storeManager->getStore()->getId())->addStoreFilter($this->_storeManager->getStore()->getId());
+                break;
+            default:
+                $_products = [];
+                break;
+        }
+        if ($this->_slider->getSortType() == \Pengo\Bannerslider\Model\Slider::SORT_TYPE_RANDOM) {
+            $_products->getSelect()->orderRand();
+        }
+        $products = [];
+        foreach ($_products as $_product) {
+            $products[] = $_product->getSku();
+        }
+        return $products;
     }
 
     /**
@@ -348,20 +403,39 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         return 'pengo-bannerslider-flex-slider-'.$this->getSlider()->getId().$this->_stdlibDateTime->gmtTimestamp();
     }
 
-    public function getBannerProduct(\Pengo\Bannerslider\Model\Banner $banner) {
+    public function getBannerProduct(\Pengo\Bannerslider\Model\Banner $banner)
+    {
         $_product = $this->productFactory->create();
-        if( trim( $banner->getSku() ) != '' ) {
-            $product = $_product->load( $_product->getIdBySku( $banner->getSku() ) );
-            if($product->isSaleable())
+        if (trim($banner->getSku()) != '') {
+            $product = $_product->load($_product->getIdBySku($banner->getSku()));
+            if ($product->isSaleable()) {
                 return $product;
-            else
+            } else {
                 return false;
-        }
-        else
+            }
+        } else {
             return false;
+        }
     }
 
-    public function getSuperAttribute(\Magento\Catalog\Model\Product $product) {
+    public function getProduct($sku)
+    {
+        $_product = $this->productFactory->create();
+        $product = $_product->load($_product->getIdBySku($sku));
+        if ($product->isSaleable()) {
+            return $product;
+        } else {
+            return false;
+        }
+    }
+
+    public function getImageUrl(\Magento\Catalog\Model\Product $product)
+    {
+        return $this->imageHelper->init($product, 'product_base_image')->getUrl();
+    }
+
+    public function getSuperAttribute(\Magento\Catalog\Model\Product $product)
+    {
         $options = [];
         /** @var \Magento\ConfigurableProduct\Model\Product\Type\Configurable $typeInstance */
         $typeInstance = $product->getTypeInstance();
@@ -384,7 +458,8 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         return $options;
     }
 
-    public function getAddToCartUrl(\Magento\Catalog\Model\Product $product) {
+    public function getAddToCartUrl(\Magento\Catalog\Model\Product $product)
+    {
         return $product->getAddToCartUrl();
     }
 }

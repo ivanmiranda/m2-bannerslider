@@ -90,6 +90,15 @@ class Slider extends \Magento\Framework\Model\AbstractModel
     const NOTE_POSITION_BOTTOM_RIGHT = 'bottom-right';
 
     /**
+     * attachment mode
+     */
+    const ATTACHMENT_MODE_DEFAULT = 0;
+    const ATTACHMENT_MODE_CATEGORY = 1;
+    const ATTACHMENT_MODE_MOSTVIEWED = 2;
+    const ATTACHMENT_MODE_BESTSELLER = 3;
+
+
+    /**
      * banner collection factory.
      *
      * @var \Pengo\Bannerslider\Model\ResourceModel\Banner\CollectionFactory

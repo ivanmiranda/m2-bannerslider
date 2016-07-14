@@ -143,6 +143,61 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             ]
         );
 
+        $fieldMaps['slider_attachment_mode'] = $fieldset->addField(
+            'slider_attachment_mode',
+            'select',
+            [
+                'label' => __('Select Attachment Mode'),
+                'name' => 'slider_attachment_mode',
+                'values' => [
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_DEFAULT,
+                        'label' => __('Default'),
+                    ],
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_CATEGORY,
+                        'label' => __('Category'),
+                    ],
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_MOSTVIEWED,
+                        'label' => __('Most Viewed'),
+                    ],
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_BESTSELLER,
+                        'label' => __('Best Seller'),
+                    ],
+                ],
+            ]
+        );
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $categoryFactory = $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+        $categories = $categoryFactory->create()->addAttributeToSelect('*');
+        $categoriesData[] = [ 'value'=>0, 'label'=>__('-- Select Category --') ];
+        foreach ($categories as $category) {
+            $categoriesData[] = [ 'value' => $category->getId(), 'label' => __($category->getName()) ];
+        }
+        $fieldMaps['slider_category'] = $fieldset->addField(
+            'slider_category',
+            'select',
+            [
+                'label' => __('Category'),
+                'name' => 'slider_category',
+                'note' => 'product category',
+                'values' => $categoriesData
+            ]
+        );
+
+        $fieldMaps['max_products'] = $fieldset->addField(
+            'max_products',
+            'text',
+            [
+                'label' => __('Maximum Products Allowed'),
+                'name' => 'max_products',
+                'note' => 'products to be displayed',
+            ]
+        );
+
         $fieldMaps['style_content'] = $fieldset->addField(
             'style_content',
             'select',
@@ -182,7 +237,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'label' => __('Select Slider Mode'),
                 'name' => 'style_slide',
                 'values' => $this->_bannersliderHelper->getStyleSlider(),
-                // 'note' => '<a data-preview-url="' . $previewUrl . '" href="' . $previewUrl . '" target="_blank" id="style-slide-view">Preview</a>',
             ]
         );
 
@@ -406,6 +460,16 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
     public function getMappingFieldDependence()
     {
         return [
+            [
+                'fieldName' => 'slider_category',
+                'fieldNameFrom' => 'slider_attachment_mode',
+                'refField' => '1',
+            ],
+            [
+                'fieldName' => 'max_products',
+                'fieldNameFrom' => 'slider_attachment_mode',
+                'refField' => '1,2,3',
+            ],
             [
                 'fieldName' => ['width', 'height'],
                 'fieldNameFrom' => 'style_slide',

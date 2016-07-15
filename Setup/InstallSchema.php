@@ -91,19 +91,25 @@ class InstallSchema implements InstallSchemaInterface
             'slider_attachment_mode',
             \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
             null,
-            ['nullable' => false, 'default' => '0'],
+            ['nullable' => true, 'default' => '0'],
             'Slider attachment mode'
         )->addColumn(
             'slider_category',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
             null,
-            ['nullable' => false, 'default' => '0'],
+            ['nullable' => true, 'default' => '0'],
             'Slider category'
         )->addColumn(
             'max_products',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
             null,
-            ['nullable' => false, 'default' => '4'],
+            ['nullable' => true, 'default' => '4'],
+            'Maximum products allowed'
+        )->addColumn(
+            'allow_sale',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['nullable' => true, 'default' => '1'],
             'Maximum products allowed'
         )->addColumn(
             'sort_type',
@@ -296,7 +302,7 @@ class InstallSchema implements InstallSchemaInterface
         )->addColumn(
             'text',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            NULL,
+            null,
             ['nullable' => true],
             'Banner text'
         )->addColumn(

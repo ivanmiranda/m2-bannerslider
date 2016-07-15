@@ -198,6 +198,25 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             ]
         );
 
+        $fieldMaps['allow_sale'] = $fieldset->addField(
+            'allow_sale',
+            'select',
+            [
+                'label' => __('Allow Sale on Slider'),
+                'name' => 'allow_sale',
+                'values' => [
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ALLOW_SALE_YES,
+                        'label' => __('Yes'),
+                    ],
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ALLOW_SALE_NO,
+                        'label' => __('No'),
+                    ],
+                ],
+            ]
+        );
+
         $fieldMaps['style_content'] = $fieldset->addField(
             'style_content',
             'select',
@@ -466,7 +485,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'refField' => '1',
             ],
             [
-                'fieldName' => 'max_products',
+                'fieldName' => ['max_products', 'allow_sale'],
                 'fieldNameFrom' => 'slider_attachment_mode',
                 'refField' => '1,2,3',
             ],

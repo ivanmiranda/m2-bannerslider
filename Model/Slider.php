@@ -97,6 +97,11 @@ class Slider extends \Magento\Framework\Model\AbstractModel
     const ATTACHMENT_MODE_MOSTVIEWED = 2;
     const ATTACHMENT_MODE_BESTSELLER = 3;
 
+    /**
+     * allow sale
+     */
+    const ALLOW_SALE_YES = 1;
+    const ALLOW_SALE_NO = 0;
 
     /**
      * banner collection factory.

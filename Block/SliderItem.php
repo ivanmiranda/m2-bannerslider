@@ -138,14 +138,27 @@ class SliderItem extends \Magento\Framework\View\Element\Template
      */
     protected $categoryFactory;
 
+    /**
+     * @var \Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory
+     */
     protected $bestSellers;
 
+    /**
+     * @var \Magento\Reports\Model\ResourceModel\Product\CollectionFactory
+     */
     protected $mostViewed;
 
+    /**
+     * @var \Magento\Catalog\Helper\Image
+     */
     protected $imageHelper;
 
     /**
-     * [__construct description].
+     * @var \Magento\Framework\Registry
+     */
+    protected $registry;
+
+    /**
      *
      * @param \Magento\Framework\View\Element\Template\Context                $context
      * @param \Pengo\Bannerslider\Model\ResourceModel\Banner\CollectionFactory $bannerCollectionFactory
@@ -172,6 +185,7 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         \Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory $bestSellers,
         \Magento\Reports\Model\ResourceModel\Product\CollectionFactory $mostViewed,
         \Magento\Catalog\Helper\Image $image,
+        \Magento\Framework\Registry $registry,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -190,6 +204,7 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         $this->bestSellers = $bestSellers;
         $this->mostViewed = $mostViewed;
         $this->imageHelper = $image;
+        $this->_registry = $registry;
     }
 
     /**
@@ -271,6 +286,10 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         }
     }
 
+    /**
+     * show titile on top o slider?
+     * @return boolean
+     */
     public function isShowTitle()
     {
         return $this->_slider->getShowTitle() == SliderModel::SHOW_TITLE_YES ? true : false;
@@ -324,11 +343,32 @@ class SliderItem extends \Magento\Framework\View\Element\Template
             case \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_MOSTVIEWED:
                 $_products = $this->mostViewed->create()->addAttributeToSelect('*')->addViewsCount()->setStoreId($this->_storeManager->getStore()->getId())->addStoreFilter($this->_storeManager->getStore()->getId());
                 break;
+            case \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_RELATEDPRODUCTS:
+                if ($currentProduct = $this->_registry->registry('current_product')) {
+                    $_products = $currentProduct->getRelatedProducts();
+                } else {
+                    $_products = [];
+                }
+                break;
+            case \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_UPSELLPRODUCTS:
+                if ($currentProduct = $this->_registry->registry('current_product')) {
+                    $_products = $currentProduct->getUpSellProducts();
+                } else {
+                    $_products = [];
+                }
+                break;
+            case \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_CROSSSELLPRODUCTS:
+                if ($currentProduct = $this->_registry->registry('current_product')) {
+                    $_products = $currentProduct->getCrossSellProducts();
+                } else {
+                    $_products = [];
+                }
+                break;
             default:
                 $_products = [];
                 break;
         }
-        if ($this->_slider->getSortType() == \Pengo\Bannerslider\Model\Slider::SORT_TYPE_RANDOM) {
+        if ($this->_slider->getSortType() == \Pengo\Bannerslider\Model\Slider::SORT_TYPE_RANDOM && $this->_slider->getSliderAttachmentMode() != \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_RELATEDPRODUCTS && $this->_slider->getSliderAttachmentMode() != \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_UPSELLPRODUCTS && $this->_slider->getSliderAttachmentMode() != \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_CROSSSELLPRODUCTS) {
             $_products->getSelect()->orderRand();
         }
         $products = [];
@@ -403,6 +443,11 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         return 'pengo-bannerslider-flex-slider-'.$this->getSlider()->getId().$this->_stdlibDateTime->gmtTimestamp();
     }
 
+    /**
+     * get product asociatted to a banner
+     * @param  \Pengo\Bannerslider\Model\Banner $banner banner
+     * @return product
+     */
     public function getBannerProduct(\Pengo\Bannerslider\Model\Banner $banner)
     {
         $_product = $this->productFactory->create();
@@ -418,6 +463,11 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         }
     }
 
+    /**
+     * get product object from banner's sku
+     * @param  string $sku
+     * @return product
+     */
     public function getProduct($sku)
     {
         $_product = $this->productFactory->create();
@@ -429,11 +479,21 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         }
     }
 
+    /**
+     * return media image URL
+     * @param  \Magento\Catalog\Model\Product $product product from banner
+     * @return string URL
+     */
     public function getImageUrl(\Magento\Catalog\Model\Product $product)
     {
         return $this->imageHelper->init($product, 'product_base_image')->getUrl();
     }
 
+    /**
+     * get super attribute data from a product
+     * @param  \Magento\Catalog\Model\Product $product product from banner
+     * @return attribute data
+     */
     public function getSuperAttribute(\Magento\Catalog\Model\Product $product)
     {
         $options = [];
@@ -458,6 +518,11 @@ class SliderItem extends \Magento\Framework\View\Element\Template
         return $options;
     }
 
+    /**
+     * get url to add product on cart
+     * @param  \Magento\Catalog\Model\Product $product
+     * @return string
+     */
     public function getAddToCartUrl(\Magento\Catalog\Model\Product $product)
     {
         return $product->getAddToCartUrl();

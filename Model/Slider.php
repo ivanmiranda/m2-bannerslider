@@ -92,10 +92,13 @@ class Slider extends \Magento\Framework\Model\AbstractModel
     /**
      * attachment mode
      */
-    const ATTACHMENT_MODE_DEFAULT = 0;
-    const ATTACHMENT_MODE_CATEGORY = 1;
-    const ATTACHMENT_MODE_MOSTVIEWED = 2;
-    const ATTACHMENT_MODE_BESTSELLER = 3;
+    const ATTACHMENT_MODE_DEFAULT           = 0;
+    const ATTACHMENT_MODE_CATEGORY          = 1;
+    const ATTACHMENT_MODE_MOSTVIEWED        = 2;
+    const ATTACHMENT_MODE_BESTSELLER        = 3;
+    const ATTACHMENT_MODE_RELATEDPRODUCTS   = 4;
+    const ATTACHMENT_MODE_UPSELLPRODUCTS    = 5;
+    const ATTACHMENT_MODE_CROSSSELLPRODUCTS = 6;
 
     /**
      * allow sale

@@ -287,31 +287,31 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 'label' => __('------- Please choose position -------'),
                 'value' => '',
             ],
-            // [
-            //     'label' => __('Popular positions'),
-            //     'value' => [
-            //         ['value' => 'cms-page-content-top', 'label' => __('Homepage-Content-Top')],
-            //     ],
-            // ],
+            [
+                'label' => __('Popular positions'),
+                'value' => [
+                    ['value' => 'cms-page-content-top', 'label' => __('Homepage-Content-Top')],
+                ],
+            ],
             [
                 'label' => __('Default for using in CMS page template'),
                 'value' => [
                     ['value' => 'custom', 'label' => __('Custom')],
                 ],
             ],
-            // [
-            //     'label' => __('General (will be disaplyed on all pages)'),
-            //     'value' => [
-            //         ['value' => 'sidebar-right-top', 'label' => __('Sidebar-Top-Right')],
-            //         ['value' => 'sidebar-right-bottom', 'label' => __('Sidebar-Bottom-Right')],
-            //         ['value' => 'sidebar-left-top', 'label' => __('Sidebar-Top-Left')],
-            //         ['value' => 'sidebar-left-bottom', 'label' => __('Sidebar-Bottom-Left')],
-            //         ['value' => 'content-top', 'label' => __('Content-Top')],
-            //         ['value' => 'menu-top', 'label' => __('Menu-Top')],
-            //         ['value' => 'menu-bottom', 'label' => __('Menu-Bottom')],
-            //         ['value' => 'page-bottom', 'label' => __('Page-Bottom')],
-            //     ],
-            // ],
+            [
+                'label' => __('General (will be disaplyed on all pages)'),
+                'value' => [
+                    ['value' => 'sidebar-right-top', 'label' => __('Sidebar-Top-Right')],
+                    ['value' => 'sidebar-right-bottom', 'label' => __('Sidebar-Bottom-Right')],
+                    ['value' => 'sidebar-left-top', 'label' => __('Sidebar-Top-Left')],
+                    ['value' => 'sidebar-left-bottom', 'label' => __('Sidebar-Bottom-Left')],
+                    ['value' => 'content-top', 'label' => __('Content-Top')],
+                    ['value' => 'menu-top', 'label' => __('Menu-Top')],
+                    ['value' => 'menu-bottom', 'label' => __('Menu-Bottom')],
+                    ['value' => 'page-bottom', 'label' => __('Page-Bottom')],
+                ],
+            ],
             // [
             //     'label' => __('Catalog and product'),
             //     'value' => [
@@ -338,33 +338,33 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             //         ['value' => 'category-page-bottom', 'label' => __('Category-Page-Bottom')],
             //     ],
             // ],
-            // [
-            //     'label' => __('Product only'),
-            //     'value' => [
-            //         ['value' => 'product-sidebar-right-top', 'label' => __('Product-Sidebar-Top-Right')],
-            //         ['value' => 'product-sidebar-right-bottom', 'label' => __('Product-Sidebar-Bottom-Right')],
-            //         ['value' => 'product-sidebar-left-top', 'label' => __('Product-Sidebar-Top-Left')],
-            //         ['value' => 'product-content-top', 'label' => __('Product-Content-Top')],
-            //         ['value' => 'product-menu-top', 'label' => __('Product-Menu-Top')],
-            //         ['value' => 'product-menu-bottom', 'label' => __('Product-Menu-Bottom')],
-            //         ['value' => 'product-page-bottom', 'label' => __('Product-Page-Bottom')],
-            //     ],
-            // ],
-            // [
-            //     'label' => __('Customer'),
-            //     'value' => [
-            //         ['value' => 'customer-content-top', 'label' => __('Customer-Content-Top')],
-            //         ['value' => 'customer-sidebar-main-top', 'label' => __('Customer-Siderbar-Main-Top')],
-            //         ['value' => 'customer-sidebar-main-bottom', 'label' => __('Customer-Siderbar-Main-Bottom')],
-            //     ],
-            // ],
-            // [
-            //     'label' => __('Cart & Checkout'),
-            //     'value' => [
-            //         ['value' => 'cart-content-top', 'label' => __('Cart-Content-Top')],
-            //         ['value' => 'checkout-content-top', 'label' => __('Checkout-Content-Top')],
-            //     ],
-            // ],
+            [
+                'label' => __('Product only'),
+                'value' => [
+                    ['value' => 'product-sidebar-right-top', 'label' => __('Product-Sidebar-Top-Right')],
+                    ['value' => 'product-sidebar-right-bottom', 'label' => __('Product-Sidebar-Bottom-Right')],
+                    ['value' => 'product-sidebar-left-top', 'label' => __('Product-Sidebar-Top-Left')],
+                    ['value' => 'product-content-top', 'label' => __('Product-Content-Top')],
+                    ['value' => 'product-menu-top', 'label' => __('Product-Menu-Top')],
+                    ['value' => 'product-menu-bottom', 'label' => __('Product-Menu-Bottom')],
+                    ['value' => 'product-page-bottom', 'label' => __('Product-Page-Bottom')],
+                ],
+            ],
+            /*[
+                'label' => __('Customer'),
+                'value' => [
+                    ['value' => 'customer-content-top', 'label' => __('Customer-Content-Top')],
+                    ['value' => 'customer-sidebar-main-top', 'label' => __('Customer-Siderbar-Main-Top')],
+                    ['value' => 'customer-sidebar-main-bottom', 'label' => __('Customer-Siderbar-Main-Bottom')],
+                ],
+            ],
+            [
+                'label' => __('Cart & Checkout'),
+                'value' => [
+                    ['value' => 'cart-content-top', 'label' => __('Cart-Content-Top')],
+                    ['value' => 'checkout-content-top', 'label' => __('Checkout-Content-Top')],
+                ],
+            ],*/
         ];
     }
 

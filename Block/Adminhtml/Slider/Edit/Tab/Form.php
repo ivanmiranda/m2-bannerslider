@@ -166,6 +166,18 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                         'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_BESTSELLER,
                         'label' => __('Best Seller'),
                     ],
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_RELATEDPRODUCTS,
+                        'label' => __('Related Products'),
+                    ],
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_UPSELLPRODUCTS,
+                        'label' => __('Up Sells Products'),
+                    ],
+                    [
+                        'value' => \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_CROSSSELLPRODUCTS,
+                        'label' => __('Cross Sells Products'),
+                    ],
                 ],
             ]
         );
@@ -377,7 +389,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'label' => __('Position'),
                 'title' => __('Position'),
                 'values' => $this->_bannersliderHelper->getBlockIdsToOptionsArray(),
-                // 'note' => '<a title="" data-position-image=\'' . json_encode($positionImage) . '\' data-tooltip-image="">Preview</a>',
             ]
         );
 

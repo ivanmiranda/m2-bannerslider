@@ -24,6 +24,8 @@
 <?php
 $styleSlide= $block->getSlider()->getStyleSlide();
 $slider = $block->getSlider();
+$bannerCollection = $block->getBannerCollection();
+$productCollection = $block->getProductCollection();
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Pengo_Bannerslider::css/slider'.$styleSlide.'.css')?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Pengo_Bannerslider::css/custom.css')?>">
@@ -39,6 +41,8 @@ $slider = $block->getSlider();
         });
     });
 </script>
+
+
 <div class="pengo-bannerslider-standard" data-mage-init='{"pengo/impress": {"url": "<?php echo $this->getUrl("bannerslider/index/impress") ?>", "slider_id": "<?php echo $slider->getId() ?>"}}'>
     <?php if ($block->isShowTitle() == 1) :
     ?>
@@ -48,9 +52,66 @@ $slider = $block->getSlider();
     <?php endif; ?>
     <div class="pengo-bannerslide-evolution-slider" style="margin: auto; margin-bottom: 40px">
         <div class="pengo-bannerslider-evolution-slider-<?php echo $slider->getId(); ?>" style="margin:auto; width: <?php echo $slider->getWidth() ?>px; height: <?php echo $slider->getHeight() ?>px;">
-            <?php foreach ($block->getBannerCollection() as $banner) :
+            <?php foreach ($bannerCollection as $banner) :
             ?>
                 <div>
+                <!-- START Extra content -->
+                <?php if (trim($banner->getText()) != '' OR trim($banner->getSku()) != ''): ?>
+                    <div class="extra-content <?php echo str_replace(" ", "_", $banner->getName()) ?>">
+
+                    <!-- Text data -->
+                        <?php if (trim($banner->getText()) != ''): ?>
+                        <div class="text"><div class="content"><?php echo $banner->getText() ?></div></div>
+                        <?php endif; ?>
+
+                    <!-- Product data -->
+                        <?php $product = $block->getBannerProduct($banner);
+                            if ($product): ?>
+                        <div class="product">
+                            <div class="data">
+                                <div class="name"><?php echo $product->getName(); ?></div>
+                                <div class="price"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(), true, false); ?></div>
+                            </div>
+                            <div class="addtocart">
+                            <?php
+                                $attributes = $block->getSuperAttribute($product);
+                            // Get product options
+                            ?>
+                            <?php
+                                if($slider->getAllowSale()):
+                                    foreach ($attributes as $attribute): ?>
+                                    <div class="field configurable required">
+                                        <label class="label" for="attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId() ?>">
+                                            <span><?php echo $block->escapeHtml($attribute->getProductAttribute()->getStoreLabel()) ?></span>
+                                        </label>
+                                        <div class="control">
+                                            <select name="super_attribute[<?php echo $attribute->getAttributeId() ?>]" data-selector="super_attribute[<?php echo $attribute->getAttributeId() ?>]" data-superattribute="<?php echo $attribute->getAttributeId() ?> " data-product="<?php echo $product->getId() ?>" data-validate="{required:true}" id="attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId() ?>" class="super-attribute-select">
+                                                <option value=""><?php echo __('Choose an Option...') ?></option>
+                                <?php
+                                        foreach ($attribute->getOptions() as $option):
+                                ?>
+                                                <option value="<?php echo $option["value_index"]; ?>"><?php echo $option['label']; ?></option>
+                                <?php   endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                            <?php
+                                    endforeach;
+                                endif;
+                            ?>
+                            </div>
+                            <div class="actions">
+                            <?php if($slider->getAllowSale()): ?>
+                                <button title="<?php echo __('Shop Item');?>" class="action tocart primary" onclick="addToCart(jQuery('#attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId(); ?>'))"><span><?php echo __('Shop Item');?></span></button>
+                            <?php endif; ?>
+                                <button title="<?php echo __('View Detail');?>" class="action detail primary" onclick="window.location.href = '<?php echo $product->getProductUrl();?>';"><span><?php echo __('View Detail');?></span></button>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+
+                    </div>
+                    <?php endif; ?>
+                <!-- END Extra content-->
                     <a href="<?php echo $banner->getClickUrl() ?>" target="<?php echo $banner->getTargetValue() ?>" style="display:block;" data-mage-init='{"pengo/clickbanner": {"url": "<?php echo $this->getUrl("bannerslider/index/click") ?>", "slider_id": "<?php echo $banner->getSliderId() ?>", "banner_id": "<?php echo $banner->getId() ?>" }}' >
                     <img style="width: <?php echo $slider->getWidth() ?>px; height: <?php echo $slider->getHeight() ?>px;" alt="<?php echo $banner->getImageAlt() ?>"  src="<?php echo $block->getBannerImageUrl($banner) ?>"/>
                     </a>

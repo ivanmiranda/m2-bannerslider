@@ -78,6 +78,13 @@ class Slider extends \Magento\Framework\Model\AbstractModel
     const STYLESLIDE_FLEXSLIDER_FOUR = 10;
 
     /**
+     * vertical
+     */
+    const STYLESLIDE_VERTICAL_ONE = 11;
+    const STYLESLIDE_VERTICAL_TWO = 12;
+    const STYLESLIDE_VERTICAL_THREE = 13;
+
+    /**
      * position code of note slider.
      */
     const NOTE_POSITION_TOP_LEFT = 'top-left';

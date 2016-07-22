@@ -171,27 +171,27 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             //         // ['value' => Slider::STYLESLIDE_SPECIAL_NOTE, 'label' => __('Note displayed on all pages')],
             //     ],
             // ],
-            // [
-            //     'label' => __('Unresponsive Slider'),
-            //     'value' => [
-            //         [
-            //             'label' => __('Slider Evolution Default'),
-            //             'value' => Slider::STYLESLIDE_EVOLUTION_ONE,
-            //         ],
-            //         [
-            //             'label' => __('Slider Evolution Caborno'),
-            //             'value' => Slider::STYLESLIDE_EVOLUTION_TWO,
-            //         ],
-            //         [
-            //             'label' => __('Slider Evolution Minimalist'),
-            //             'value' => Slider::STYLESLIDE_EVOLUTION_THREE,
-            //         ],
-            //         [
-            //             'label' => __('Slider Evolution Fresh'),
-            //             'value' => Slider::STYLESLIDE_EVOLUTION_FOUR,
-            //         ],
-            //     ],
-            // ],
+            [
+                'label' => __('Unresponsive Slider'),
+                'value' => [
+                    [
+                        'label' => __('Slider Evolution Default'),
+                        'value' => Slider::STYLESLIDE_EVOLUTION_ONE,
+                    ],
+                    [
+                        'label' => __('Slider Evolution Caborno'),
+                        'value' => Slider::STYLESLIDE_EVOLUTION_TWO,
+                    ],
+                    [
+                        'label' => __('Slider Evolution Minimalist'),
+                        'value' => Slider::STYLESLIDE_EVOLUTION_THREE,
+                    ],
+                    [
+                        'label' => __('Slider Evolution Fresh'),
+                        'value' => Slider::STYLESLIDE_EVOLUTION_FOUR,
+                    ],
+                ],
+            ],
             [
                 'label' => __('Responsive Slider'),
                 'value' => [
@@ -210,6 +210,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     [
                         'label' => __('FlexSlider 4'),
                         'value' => Slider::STYLESLIDE_FLEXSLIDER_FOUR,
+                    ],
+                    [
+                        'label' => __('Vertical 1'),
+                        'value' => Slider::STYLESLIDE_VERTICAL_ONE,
+                    ],
+                    [
+                        'label' => __('Vertical 2'),
+                        'value' => Slider::STYLESLIDE_VERTICAL_TWO,
+                    ],
+                    [
+                        'label' => __('Vertical 3'),
+                        'value' => Slider::STYLESLIDE_VERTICAL_THREE,
                     ],
                 ],
             ],

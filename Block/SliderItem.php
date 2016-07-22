@@ -55,6 +55,11 @@ class SliderItem extends \Magento\Framework\View\Element\Template
     const STYLESLIDE_FLEXSLIDER_TEMPLATE = 'Pengo_Bannerslider::slider/flexslider.phtml';
 
     /**
+     * template for vertical slider.
+     */
+    const STYLESLIDE_VERTICAL_TEMPLATE = 'Pengo_Bannerslider::slider/vertical.phtml';
+
+    /**
      * template for custom slider.
      */
     const STYLESLIDE_CUSTOM_TEMPLATE = 'Pengo_Bannerslider::slider/custom.phtml';
@@ -278,7 +283,12 @@ class SliderItem extends \Magento\Framework\View\Element\Template
             case SliderModel::STYLESLIDE_SPECIAL_NOTE:
                 $this->setTemplate(self::STYLESLIDE_SPECIAL_NOTE_TEMPLATE);
                 break;
-
+            //Vertica
+            case SliderModel::STYLESLIDE_VERTICAL_ONE:
+            case SliderModel::STYLESLIDE_VERTICAL_TWO:
+            case SliderModel::STYLESLIDE_VERTICAL_THREE:
+                $this->setTemplate(self::STYLESLIDE_VERTICAL_TEMPLATE);
+                break;
             // Flex slide
             default:
                 $this->setTemplate(self::STYLESLIDE_FLEXSLIDER_TEMPLATE);
@@ -369,7 +379,9 @@ class SliderItem extends \Magento\Framework\View\Element\Template
                 break;
         }
         if ($this->_slider->getSortType() == \Pengo\Bannerslider\Model\Slider::SORT_TYPE_RANDOM && $this->_slider->getSliderAttachmentMode() != \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_RELATEDPRODUCTS && $this->_slider->getSliderAttachmentMode() != \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_UPSELLPRODUCTS && $this->_slider->getSliderAttachmentMode() != \Pengo\Bannerslider\Model\Slider::ATTACHMENT_MODE_CROSSSELLPRODUCTS) {
-            $_products->getSelect()->orderRand();
+            if (!is_array($_products)) {
+                $_products->getSelect()->orderRand();
+            }
         }
         $products = [];
         foreach ($_products as $_product) {

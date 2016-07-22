@@ -31,8 +31,14 @@ $htmlId   = $block->getFlexsliderHtmlId();
 $bannerCollection = $block->getBannerCollection();
 $productCollection = $block->getProductCollection();
 ?>
-<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Pengo_Bannerslider::css/flexslider.css')?>">
+
+<?php if ($styleSlide == \Pengo\Bannerslider\Model\Slider::STYLESLIDE_VERTICAL_THREE) : ?>
+<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Pengo_Bannerslider::css/vertical3.css')?>">
+<?php else : ?>
+<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Pengo_Bannerslider::css/vertical.css')?>">
+<?php endif; ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Pengo_Bannerslider::css/custom.css')?>">
+
 <script type="text/javascript">
 (function  () {
     var flexSliderSelector = '<?php echo $htmlId; ?>';
@@ -49,76 +55,108 @@ $productCollection = $block->getProductCollection();
             }
         }
         $(document).ready(function($) {
-            var STYLESLIDE_FLEXSLIDER_ONE = <?php echo \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_ONE ?>;
-            var STYLESLIDE_FLEXSLIDER_TWO = <?php echo \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_TWO ?>;
-            var STYLESLIDE_FLEXSLIDER_THREE = <?php echo \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_THREE ?>;
+            var STYLESLIDE_VERTICAL_ONE = <?php echo \Pengo\Bannerslider\Model\Slider::STYLESLIDE_VERTICAL_ONE ?>;
+            var STYLESLIDE_VERTICAL_TWO = <?php echo \Pengo\Bannerslider\Model\Slider::STYLESLIDE_VERTICAL_TWO ?>;
+            var STYLESLIDE_VERTICAL_THREE = <?php echo \Pengo\Bannerslider\Model\Slider::STYLESLIDE_VERTICAL_THREE ?>;
 
             switch (<?php echo $styleSlide ?>) {
-                case STYLESLIDE_FLEXSLIDER_ONE:
-                    $('.' + flexSliderSelector).flexslider({
-                        animation: '<?php echo $slider->getData("animationB") ?>',
-                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
-                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
-                        touch: true,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    break;
-                case STYLESLIDE_FLEXSLIDER_TWO:
-                    $('.' + flexSliderSelector).flexslider({
-                        animation: '<?php echo $slider->getData("animationB") ?>',
-                        controlNav: 'thumbnails',
-                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
-                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
-                        touch: true,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    break;
-                case STYLESLIDE_FLEXSLIDER_THREE:
-                    $('#'+flexSliderSelector + '-carousel').flexslider({
-                        animation: 'slide',
+                case STYLESLIDE_VERTICAL_ONE:
+                    $('#<?php echo $htmlId ?>-carousel').flexslider({
+                        animation: "fade",
                         controlNav: false,
-                        animationLoop: true,
-                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
+                        directionNav: true,
                         itemWidth: 210,
                         itemMargin: 5,
-                        asNavFor: '#' + flexSliderSelector,
+                        maxItems: 4,
+                        asNavFor: '#<?php echo $htmlId ?>',
+                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
+                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                        prevText: '',
+                        nextText: '',
                         touch: true,
                         start: function (slider) {
                             fitImageSlider(slider);
                         }
                     });
-                    $('#' + flexSliderSelector).flexslider({
-                        animation: 'slide',
+
+                    $('#<?php echo $htmlId ?>').flexslider({
+                        animation: 'fade',
                         controlNav: false,
                         animationLoop: true,
-                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
-                        sync: '#'+flexSliderSelector + '-carousel',
-                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
-                        touch: true,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    break;
-                default:
-                    $('.' + flexSliderSelector).flexslider({
-                        animation: 'slide',
-                        animationLoop: true,
-                        itemWidth: 400,
-                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
                         itemMargin: 5,
                         minItems: 2,
                         maxItems: 4,
                         touch: true,
+                        directionNav: true,
+                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
+                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                        sync: "#<?php echo $htmlId ?>-carousel",
+                        prevText: '',
+                        nextText: '',
                         start: function (slider) {
                             fitImageSlider(slider);
                         }
                     });
-                    break;
+                break;
+                case STYLESLIDE_VERTICAL_TWO:
+                    $('#<?php echo $htmlId ?>-carousel').flexslider({
+                        animation: "fade",
+                        controlNav: false,
+                        directionNav: true,
+                        itemWidth: 210,
+                        itemMargin: 5,
+                        maxItems: 4,
+                        asNavFor: '#<?php echo $htmlId ?>',
+                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
+                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                        prevText: '',
+                        nextText: '',
+                        touch: true,
+                        start: function (slider) {
+                            fitImageSlider(slider);
+                        }
+                    });
+
+                    $('#<?php echo $htmlId ?>').flexslider({
+                        animation: 'slide',
+                        direction: 'vertical',
+                        controlNav: false,
+                        animationLoop: true,
+                        itemMargin: 5,
+                        minItems: 2,
+                        maxItems: 4,
+                        touch: true,
+                        directionNav: true,
+                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
+                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                        sync: "#<?php echo $htmlId ?>-carousel",
+                        prevText: '',
+                        nextText: '',
+                        start: function (slider) {
+                            fitImageSlider(slider);
+                        }
+                    });
+                break;
+                case STYLESLIDE_VERTICAL_THREE:
+                    $('#<?php echo $htmlId ?>').flexslider({
+                        animation: 'slide',
+                        direction: 'vertical',
+                        controlNav: false,
+                        animationLoop: true,
+                        itemMargin: 5,
+                        minItems: 2,
+                        maxItems: 4,
+                        touch: true,
+                        directionNav: true,
+                        slideshow: <?php if ($slider->getSliderSpeed() == 0) echo 'false'; else echo 'true'; ?>,
+                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                        prevText: '',
+                        nextText: '',
+                        start: function (slider) {
+                            fitImageSlider(slider);
+                        }
+                    });
+                break;
             }
 
         });
@@ -132,75 +170,18 @@ $productCollection = $block->getProductCollection();
 // **************************
 ?>
 <div class="pengo-bannerslider-standard" data-mage-init='{"pengo/impress": {"url": "<?php echo $this->getUrl("bannerslider/index/impress") ?>", "slider_id": "<?php echo $slider->getId() ?>"}}'>
-    <?php if ($block->isShowTitle() == \Pengo\Bannerslider\Model\Slider::SHOW_TITLE_YES) :
+     <?php if ($block->isShowTitle() == \Pengo\Bannerslider\Model\Slider::SHOW_TITLE_YES) :
     ?>
         <div class="pengo-bannerslider-title" style="font: bold 12px/16px Arial, Helvetica, sans-serif;text-transform: uppercase;color: #e26703;">
         <strong><span><?php echo $slider->getTitle(); ?></span></strong>
         </div>
     <?php endif; ?>
-    <div class="pengo-bannerslide-flex-slider" style="margin: auto; margin-bottom: 40px;">
-        <div id="<?php echo $htmlId ?>" class="flexslider flexslider-content-image <?php echo $htmlId ?>" style="margin:auto">
-            <ul class="slides">
+        <div class="col-slider">
+            <div id="<?php echo $htmlId ?>" class="flexslider flexslider-content-image <?php echo $htmlId ?>" style="margin:auto">
+                <ul class="slides">
                 <?php foreach ($productCollection as $_product):
                     $product = $block->getProduct($_product);
                 ?>
-                    <?php if ($styleSlide == \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_TWO) : ?>
-                    <li data-thumb="<?php echo $block->getImageUrl($product) ?>">
-                    <!-- START Extra content -->
-                        <div class="extra-content <?php echo str_replace(" ", "_", $product->getName()) ?>">
-                        <!-- Product data -->
-                            <?php if ($product->isSalable()): ?>
-                            <div class="product">
-                                <div class="data">
-                                    <div class="name"><?php echo $product->getName(); ?></div>
-                                    <div class="price"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(), true, false); ?></div>
-                                </div>
-                                <div class="addtocart">
-                                <?php 
-                                    $attributes = $block->getSuperAttribute($product);
-                                // Get product options
-                                ?>
-                                <?php
-                                    if($slider->getAllowSale()):
-                                        foreach ($attributes as $attribute):
-                                ?>
-                                        <div class="field configurable required">
-                                            <label class="label" for="attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId() ?>">
-                                                <span><?php echo $block->escapeHtml($attribute->getProductAttribute()->getStoreLabel()) ?></span>
-                                            </label>
-                                            <div class="control">
-                                                <select name="super_attribute[<?php echo $attribute->getAttributeId() ?>]" data-selector="super_attribute[<?php echo $attribute->getAttributeId() ?>]" data-superattribute="<?php echo $attribute->getAttributeId() ?> " data-product="<?php echo $product->getId() ?>" data-validate="{required:true}" id="attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId() ?>" class="super-attribute-select">
-                                                    <option value=""><?php echo __('Choose an Option...') ?></option>
-                                    <?php
-                                            foreach ($attribute->getOptions() as $option):
-                                    ?>
-                                                    <option value="<?php echo $option["value_index"]; ?>"><?php echo $option['label']; ?></option>
-                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                <?php
-                                        endforeach;
-                                    endif;
-                                ?>
-                                </div>
-                                <div class="actions">
-                                <?php if($slider->getAllowSale()): ?>
-                                    <button title="<?php echo __('Shop Item');?>" class="action tocart primary" onclick="addToCart(jQuery('#attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId(); ?>'))"><span><?php echo __('Shop Item');?></span></button>
-                                <?php endif; ?>
-                                    <button title="<?php echo __('View Detail');?>" class="action detail primary" onclick="window.location.href = '<?php echo $product->getProductUrl();?>';"><span><?php echo __('View Detail');?></span></button>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-
-                        </div>
-                    <!-- END Extra content-->
-                        <a href="<?php echo $product->getClickUrl() ?>" target="<?php echo $product->getTargetValue() ?>" style="display:block;" data-mage-init='{"pengo/clickbanner": {"url": "<?php echo $this->getUrl("bannerslider/index/click") ?>", "slider_id": "<?php echo $product->getSliderId() ?>", "banner_id": "<?php echo $product->getId() ?>" }}' >
-                        <img alt="<?php echo $product->getImageAlt() ?>" src="<?php echo $block->getImageUrl($product) ?>"/>
-                        </a>
-                    </li>
-                    <?php else :
-                    ?>
                     <li>
                     <!-- START Extra content -->
                         <div class="extra-content <?php echo str_replace(" ", "_", $product->getName()) ?>">
@@ -213,7 +194,7 @@ $productCollection = $block->getProductCollection();
                                     <div class="price"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(), true, false); ?></div>
                                 </div>
                                 <div class="addtocart">
-                                <?php 
+                                <?php
                                     $attributes = $block->getSuperAttribute($product);
                                 // Get product options
                                 ?>
@@ -256,26 +237,27 @@ $productCollection = $block->getProductCollection();
                         <img alt="<?php echo $product->getImageAlt() ?>"  src="<?php echo $block->getImageUrl($product) ?>"/>
                         </a>
                     </li>
-                    <?php endif; ?>
                 <?php endforeach ?>
-            </ul>
+                </ul>
+            </div>
         </div>
 
-        <?php if ($styleSlide ==  \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_THREE) :
-        ?>
-        <!-- for flex slide carousel-->
-        <div id="<?php echo $htmlId ?>-carousel" class="flexslider flexslider-carousel" style="margin:auto">
-            <ul class="slides">
-                <?php foreach ($bannerCollection as $banner) :
+        <?php if ($styleSlide != \Pengo\Bannerslider\Model\Slider::STYLESLIDE_VERTICAL_THREE) : ?>
+        <div class="col-carrousel">
+            <div id="<?php echo $htmlId ?>-carousel" class="flexslider flexslider-carousel" style="margin:auto">
+            <!--<div id="carousel" class="flexslider">-->
+                <ul class="slides">
+                <?php foreach ($productCollection as $_product):
+                    $product = $block->getProduct($_product);
                 ?>
                     <li>
-                        <img  alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>" />
+                        <img alt="<?php echo $product->getImageAlt() ?>"  src="<?php echo $block->getImageUrl($product) ?>"/>
                     </li>
                 <?php endforeach ?>
-            </ul>
+                </ul>
+            </div>
         </div>
         <?php endif; ?>
-    </div>
 </div>
 <?php else:
 // *************************
@@ -283,82 +265,17 @@ $productCollection = $block->getProductCollection();
 // *************************
 ?>
 <div class="pengo-bannerslider-standard" data-mage-init='{"pengo/impress": {"url": "<?php echo $this->getUrl("bannerslider/index/impress") ?>", "slider_id": "<?php echo $slider->getId() ?>"}}'>
-    <?php if ($block->isShowTitle() == \Pengo\Bannerslider\Model\Slider::SHOW_TITLE_YES) :
+     <?php if ($block->isShowTitle() == \Pengo\Bannerslider\Model\Slider::SHOW_TITLE_YES) :
     ?>
         <div class="pengo-bannerslider-title" style="font: bold 12px/16px Arial, Helvetica, sans-serif;text-transform: uppercase;color: #e26703;">
         <strong><span><?php echo $slider->getTitle(); ?></span></strong>
         </div>
     <?php endif; ?>
-    <div class="pengo-bannerslide-flex-slider" style="margin: auto; margin-bottom: 40px;">
-        <div id="<?php echo $htmlId ?>" class="flexslider flexslider-content-image <?php echo $htmlId ?>" style="margin:auto">
-            <ul class="slides">
-                <?php foreach ($bannerCollection as $banner):
+        <div class="col-slider">
+            <div id="<?php echo $htmlId ?>" class="flexslider flexslider-content-image <?php echo $htmlId ?>" style="margin:auto">
+                <ul class="slides">
+                    <?php foreach ($bannerCollection as $banner):
                 ?>
-                    <?php if ($styleSlide == \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_TWO) : ?>
-                    <li data-thumb="<?php echo $block->getBannerImageUrl($banner) ?>">
-                    <!-- START Extra content -->
-                        <?php if (trim($banner->getText()) != '' OR trim($banner->getSku()) != ''): ?>
-                        <div class="extra-content <?php echo str_replace(" ", "_", $banner->getName()) ?>">
-
-                        <!-- Text data -->
-                            <?php if (trim($banner->getText()) != ''): ?>
-                            <div class="text"><div class="content"><?php echo $banner->getText() ?></div></div>
-                            <?php endif; ?>
-
-                        <!-- Product data -->
-                            <?php $product = $block->getBannerProduct($banner); 
-                                if ($product): ?>
-                            <div class="product">
-                                <div class="data">
-                                    <div class="name"><?php echo $product->getName(); ?></div>
-                                    <div class="price"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(), true, false); ?></div>
-                                </div>
-                                <div class="addtocart">
-                                <?php 
-                                    $attributes = $block->getSuperAttribute($product);
-                                // Get product options
-                                ?>
-                                <?php
-                                    if($slider->getAllowSale()):
-                                        foreach ($attributes as $attribute): ?>
-                                        <div class="field configurable required">
-                                            <label class="label" for="attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId() ?>">
-                                                <span><?php echo $block->escapeHtml($attribute->getProductAttribute()->getStoreLabel()) ?></span>
-                                            </label>
-                                            <div class="control">
-                                                <select name="super_attribute[<?php echo $attribute->getAttributeId() ?>]" data-selector="super_attribute[<?php echo $attribute->getAttributeId() ?>]" data-superattribute="<?php echo $attribute->getAttributeId() ?> " data-product="<?php echo $product->getId() ?>" data-validate="{required:true}" id="attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId() ?>" class="super-attribute-select">
-                                                    <option value=""><?php echo __('Choose an Option...') ?></option>
-                                    <?php
-                                            foreach ($attribute->getOptions() as $option):
-                                    ?>
-                                                    <option value="<?php echo $option["value_index"]; ?>"><?php echo $option['label']; ?></option>
-                                    <?php   endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                <?php
-                                        endforeach;
-                                    endif;
-                                ?>
-                                </div>
-                                <div class="actions">
-                                <?php if($slider->getAllowSale()): ?>
-                                    <button title="<?php echo __('Shop Item');?>" class="action tocart primary" onclick="addToCart(jQuery('#attribute<?php echo $slider->getId().$product->getId().$attribute->getAttributeId(); ?>'))"><span><?php echo __('Shop Item');?></span></button>
-                                <?php endif; ?>
-                                    <button title="<?php echo __('View Detail');?>" class="action detail primary" onclick="window.location.href = '<?php echo $product->getProductUrl();?>';"><span><?php echo __('View Detail');?></span></button>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-
-                        </div>
-                        <?php endif; ?>
-                    <!-- END Extra content-->
-                        <a href="<?php echo $banner->getClickUrl() ?>" target="<?php echo $banner->getTargetValue() ?>" style="display:block;" data-mage-init='{"pengo/clickbanner": {"url": "<?php echo $this->getUrl("bannerslider/index/click") ?>", "slider_id": "<?php echo $banner->getSliderId() ?>", "banner_id": "<?php echo $banner->getId() ?>" }}' >
-                        <img alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>"/>
-                        </a>
-                    </li>
-                    <?php else :
-                    ?>
                     <li>
                     <!-- START Extra content -->
                         <?php if (trim($banner->getText()) != '' OR trim($banner->getSku()) != ''): ?>
@@ -370,7 +287,7 @@ $productCollection = $block->getProductCollection();
                             <?php endif; ?>
 
                         <!-- Product data -->
-                            <?php $product = $block->getBannerProduct($banner); 
+                            <?php $product = $block->getBannerProduct($banner);
                                 if ($product): ?>
                             <div class="product">
                                 <div class="data">
@@ -378,7 +295,7 @@ $productCollection = $block->getProductCollection();
                                     <div class="price"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(), true, false); ?></div>
                                 </div>
                                 <div class="addtocart">
-                                <?php 
+                                <?php
                                     $attributes = $block->getSuperAttribute($product);
                                 // Get product options
                                 ?>
@@ -421,35 +338,36 @@ $productCollection = $block->getProductCollection();
                         <img alt="<?php echo $banner->getImageAlt() ?>"  src="<?php echo $block->getBannerImageUrl($banner) ?>"/>
                         </a>
                     </li>
-                    <?php endif; ?>
                 <?php endforeach ?>
-            </ul>
+                </ul>
+            </div>
         </div>
 
-        <?php if ($styleSlide ==  \Pengo\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_THREE) :
-        ?>
-        <!-- for flex slide carousel-->
-        <div id="<?php echo $htmlId ?>-carousel" class="flexslider flexslider-carousel" style="margin:auto">
-            <ul class="slides">
-                <?php foreach ($bannerCollection as $banner) :
-                ?>
+        <?php if ($styleSlide != \Pengo\Bannerslider\Model\Slider::STYLESLIDE_VERTICAL_THREE) : ?>
+        <div class="col-carrousel">
+            <div id="<?php echo $htmlId ?>-carousel" class="flexslider flexslider-carousel" style="margin:auto">
+            <!--<div id="carousel" class="flexslider">-->
+                <ul class="slides">
+                <?php foreach ($bannerCollection as $banner) : ?>
                     <li>
                         <img  alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>" />
                     </li>
                 <?php endforeach ?>
-            </ul>
+                </ul>
+            </div>
         </div>
         <?php endif; ?>
-    </div>
 </div>
 <?php
 endif;
 ?>
+
 <style>
     .flex-viewport .slides li{
         margin-bottom: 0px !important;
     }
 </style>
+
 
 <div id="slider-loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99; background: #fff; opacity: 0.5; filter: alpha(opacity=50); display: none;"></div>
 

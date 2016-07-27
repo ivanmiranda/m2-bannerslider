@@ -1,6 +1,6 @@
 # bannerslider
 
-Get customers' attention with eye-catching images
+Get customers' attention with eye-catching images..
 
 # Use
 
